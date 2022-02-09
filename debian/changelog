@@ -1,0 +1,15 @@
+ros-rolling-rqt-image-overlay (0.0.2-2bullseye) bullseye; urgency=high
+
+  * adapt to new changes in cpplint about using a leading "./" in include statements
+  * Contributors: ijnek
+
+ -- ijnek <kenjibrameld@gmail.com>  Sat, 29 Jan 2022 08:00:00 -0000
+
+ros-rolling-rqt-image-overlay (0.0.1-2bullseye) bullseye; urgency=high
+
+  * Initial release
+  * Contributors: ijnek
+
+ -- ijnek <kenjibrameld@gmail.com>  Sat, 08 Jan 2022 08:00:00 -0000
+
+
