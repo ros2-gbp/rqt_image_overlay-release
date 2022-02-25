@@ -14,11 +14,17 @@
 
 #include <gtest/gtest.h>
 #include <memory>
+#include <vector>
 #include "../src/list_image_topics.hpp"
 #include "rclcpp/node.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include "image_transport/image_transport.hpp"
+#include "theora_image_transport/msg/packet.hpp"
+#include "std_msgs/msg/string.hpp"
 
+// In this test, there's two types of transports (ie. "raw" and "theora") available.
+// The "theora" transport is declared as a test dependency so we can write tests for
+// image_transport plugins.
 class TestListImageTopics : public ::testing::Test
 {
 protected:
@@ -31,6 +37,13 @@ protected:
   {
     rclcpp::shutdown();
   }
+
+  static bool checkContains(
+    const std::vector<rqt_image_overlay::ImageTopic> & imageTopics,
+    const rqt_image_overlay::ImageTopic & imageTopic)
+  {
+    return std::count(imageTopics.begin(), imageTopics.end(), imageTopic) > 0;
+  }
 };
 
 TEST_F(TestListImageTopics, TestNone)
@@ -41,40 +54,98 @@ TEST_F(TestListImageTopics, TestNone)
   rclcpp::sleep_for(std::chrono::milliseconds(10));
   rclcpp::spin_some(node);
 
-  auto topics = rqt_image_overlay::ListImageTopics(*node);
-  EXPECT_EQ(topics.size(), 0u);
+  auto imageTopics = rqt_image_overlay::ListImageTopics(*node);
+  EXPECT_EQ(imageTopics.size(), 0u);
 }
 
 TEST_F(TestListImageTopics, TestOne)
 {
   auto node = std::make_shared<rclcpp::Node>("test_node");
 
-  auto publisher = image_transport::create_publisher(node.get(), "test_topic");
+  auto publisher = image_transport::create_publisher(node.get(), "/test_topic");
 
   // Give a chance for the topic to be picked up
   rclcpp::sleep_for(std::chrono::milliseconds(10));
   rclcpp::spin_some(node);
 
-  auto topics = rqt_image_overlay::ListImageTopics(*node);
-  ASSERT_EQ(topics.size(), 1u);
-  EXPECT_EQ(topics.at(0), "/test_topic");
+  auto imageTopics = rqt_image_overlay::ListImageTopics(*node);
+  ASSERT_EQ(imageTopics.size(), 2u);
+  EXPECT_TRUE(checkContains(imageTopics, rqt_image_overlay::ImageTopic{"/test_topic", "raw"}));
+  EXPECT_TRUE(checkContains(imageTopics, rqt_image_overlay::ImageTopic{"/test_topic", "theora"}));
 }
 
 TEST_F(TestListImageTopics, TestThree)
 {
   auto node = std::make_shared<rclcpp::Node>("test_node");
 
-  auto publisher1 = image_transport::create_publisher(node.get(), "test_ns1/test_topic1");
-  auto publisher2 = image_transport::create_publisher(node.get(), "test_ns2/test_topic2");
-  auto publisher3 = image_transport::create_publisher(node.get(), "test_ns3/test_topic3");
+  auto publisher1 = image_transport::create_publisher(node.get(), "/test_ns1/test_topic1");
+  auto publisher2 = image_transport::create_publisher(node.get(), "/test_ns2/test_topic2");
+  auto publisher3 = image_transport::create_publisher(node.get(), "/test_ns3/test_topic3");
+
+  // Give a chance for the topic to be picked up
+  rclcpp::sleep_for(std::chrono::milliseconds(10));
+  rclcpp::spin_some(node);
+
+  auto imageTopics = rqt_image_overlay::ListImageTopics(*node);
+  ASSERT_EQ(imageTopics.size(), 6u);
+  EXPECT_TRUE(
+    checkContains(
+      imageTopics,
+      rqt_image_overlay::ImageTopic{"/test_ns1/test_topic1", "raw"}));
+  EXPECT_TRUE(
+    checkContains(
+      imageTopics,
+      rqt_image_overlay::ImageTopic{"/test_ns1/test_topic1", "theora"}));
+  EXPECT_TRUE(
+    checkContains(
+      imageTopics,
+      rqt_image_overlay::ImageTopic{"/test_ns2/test_topic2", "raw"}));
+  EXPECT_TRUE(
+    checkContains(
+      imageTopics,
+      rqt_image_overlay::ImageTopic{"/test_ns2/test_topic2", "theora"}));
+  EXPECT_TRUE(
+    checkContains(
+      imageTopics,
+      rqt_image_overlay::ImageTopic{"/test_ns3/test_topic3", "raw"}));
+  EXPECT_TRUE(
+    checkContains(
+      imageTopics,
+      rqt_image_overlay::ImageTopic{"/test_ns3/test_topic3", "theora"}));
+}
+
+TEST_F(TestListImageTopics, TestOnlyTheoraTransport)
+{
+  auto node = std::make_shared<rclcpp::Node>("test_node");
+
+  auto publisher =
+    node->create_publisher<theora_image_transport::msg::Packet>("/test_topic/theora", 1);
+
+  // Give a chance for the topic to be picked up
+  rclcpp::sleep_for(std::chrono::milliseconds(10));
+  rclcpp::spin_some(node);
+
+  auto imageTopics = rqt_image_overlay::ListImageTopics(*node);
+  ASSERT_EQ(imageTopics.size(), 1u);
+  EXPECT_TRUE(
+    checkContains(
+      imageTopics,
+      rqt_image_overlay::ImageTopic{"/test_topic", "theora"}));
+}
+
+TEST_F(TestListImageTopics, TestFakeTheoraTransport)
+{
+  // In this example, we test a case where the topic name ends with a transport type, but the msg
+  // type is not theora_image_transport::msg::Packet.
+  auto node = std::make_shared<rclcpp::Node>("test_node");
+
+  auto publisher =
+    node->create_publisher<std_msgs::msg::String>("/test_topic/theora", 1);
 
   // Give a chance for the topic to be picked up
   rclcpp::sleep_for(std::chrono::milliseconds(10));
   rclcpp::spin_some(node);
 
   auto topics = rqt_image_overlay::ListImageTopics(*node);
-  ASSERT_EQ(topics.size(), 3u);
-  EXPECT_EQ(std::count(topics.begin(), topics.end(), "/test_ns1/test_topic1"), 1);
-  EXPECT_EQ(std::count(topics.begin(), topics.end(), "/test_ns2/test_topic2"), 1);
-  EXPECT_EQ(std::count(topics.begin(), topics.end(), "/test_ns3/test_topic3"), 1);
+  ASSERT_TRUE(topics.empty());
 }
