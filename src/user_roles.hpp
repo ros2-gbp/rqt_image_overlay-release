@@ -12,36 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef COMPOSITION_FRAME_HPP_
-#define COMPOSITION_FRAME_HPP_
-
-#include <QFrame>
-#include <QImage>
-#include <memory>
-#include <string>
+#ifndef USER_ROLES_HPP_
+#define USER_ROLES_HPP_
 
 namespace rqt_image_overlay
 {
-
-class CompositionFrame
-  : public QFrame
+namespace user_roles
 {
-  Q_OBJECT
 
-public:
-  explicit CompositionFrame(QWidget * parent, Qt::WindowFlags flags = Qt::WindowFlags());
-  void setImage(std::shared_ptr<QImage> image);
-
-signals:
-  void delayedUpdate();
-
-protected:
-  void paintEvent(QPaintEvent * event);
-
-private:
-  std::shared_ptr<QImage> qimage;
+enum
+{
+  UseColorDialogRole = Qt::UserRole  // Whether to use the color delegate (bool)
 };
 
+}  // namespace user_roles
 }  // namespace rqt_image_overlay
 
-#endif  // COMPOSITION_FRAME_HPP_
+#endif  // USER_ROLES_HPP_

@@ -12,36 +12,31 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef COMPOSITION_FRAME_HPP_
-#define COMPOSITION_FRAME_HPP_
+#ifndef OVERLAY_MANAGER_VIEW_HPP_
+#define OVERLAY_MANAGER_VIEW_HPP_
 
-#include <QFrame>
-#include <QImage>
+#include <QTableView>
 #include <memory>
-#include <string>
 
 namespace rqt_image_overlay
 {
+class ColorDialogDelegate;
 
-class CompositionFrame
-  : public QFrame
+class OverlayManagerView
+  : public QTableView
 {
   Q_OBJECT
 
 public:
-  explicit CompositionFrame(QWidget * parent, Qt::WindowFlags flags = Qt::WindowFlags());
-  void setImage(std::shared_ptr<QImage> image);
-
-signals:
-  void delayedUpdate();
-
-protected:
-  void paintEvent(QPaintEvent * event);
+  explicit OverlayManagerView(QWidget * parent = nullptr);
+  ~OverlayManagerView();  // need a destructor (StackOverflow: 13414652)
+  void setModel(QAbstractItemModel * model) override;
 
 private:
-  std::shared_ptr<QImage> qimage;
+  std::unique_ptr<ColorDialogDelegate> colorDialogDelegate;
 };
+
 
 }  // namespace rqt_image_overlay
 
-#endif  // COMPOSITION_FRAME_HPP_
+#endif  // OVERLAY_MANAGER_VIEW_HPP_
