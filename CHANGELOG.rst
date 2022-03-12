@@ -2,6 +2,13 @@
 Changelog for package rqt_image_overlay
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.0.5 (2022-03-12)
+------------------
+* remove unused dependencies
+* add layer color selection feature
+* fix deprecation warning
+* Contributors: Kenji Brameld
+
 0.0.4 (2022-03-02)
 ------------------
 
