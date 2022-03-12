@@ -1,4 +1,4 @@
-// Copyright 2021 Kenji Brameld
+// Copyright 2022 Kenji Brameld
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,36 +12,31 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef COMPOSITION_FRAME_HPP_
-#define COMPOSITION_FRAME_HPP_
+#ifndef COLOR_DIALOG_DELEGATE_HPP_
+#define COLOR_DIALOG_DELEGATE_HPP_
 
-#include <QFrame>
-#include <QImage>
-#include <memory>
-#include <string>
+#include <QStyledItemDelegate>
 
 namespace rqt_image_overlay
 {
 
-class CompositionFrame
-  : public QFrame
+class ColorDialogDelegate : public QStyledItemDelegate
 {
   Q_OBJECT
 
 public:
-  explicit CompositionFrame(QWidget * parent, Qt::WindowFlags flags = Qt::WindowFlags());
-  void setImage(std::shared_ptr<QImage> image);
+  explicit ColorDialogDelegate(QObject * parent = nullptr);
 
-signals:
-  void delayedUpdate();
+  QWidget * createEditor(
+    QWidget * parent, const QStyleOptionViewItem & option,
+    const QModelIndex & index) const override;
 
-protected:
-  void paintEvent(QPaintEvent * event);
-
-private:
-  std::shared_ptr<QImage> qimage;
+  void setEditorData(QWidget * editor, const QModelIndex & index) const override;
+  void setModelData(
+    QWidget * editor, QAbstractItemModel * model,
+    const QModelIndex & index) const override;
 };
 
 }  // namespace rqt_image_overlay
 
-#endif  // COMPOSITION_FRAME_HPP_
+#endif  // COLOR_DIALOG_DELEGATE_HPP_
