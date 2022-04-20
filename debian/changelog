@@ -1,0 +1,35 @@
+ros-humble-rqt-image-overlay-layer (0.0.5-2jammy) jammy; urgency=high
+
+  * add layer color selection feature
+  * Contributors: Kenji Brameld
+
+ -- ijnek <kenjibrameld@gmail.com>  Sat, 12 Mar 2022 08:00:00 -0000
+
+ros-humble-rqt-image-overlay-layer (0.0.4-2jammy) jammy; urgency=high
+
+  * Add message collection window, and synchronize image and layers using header timestamp if available
+  * implement overlay using msg_storage and use mutexes to handle multithreading
+  * Contributors: Kenji Brameld
+
+ -- ijnek <kenjibrameld@gmail.com>  Wed, 02 Mar 2022 08:00:00 -0000
+
+ros-humble-rqt-image-overlay-layer (0.0.3-2jammy) jammy; urgency=high
+
+
+
+ -- ijnek <kenjibrameld@gmail.com>  Sat, 26 Feb 2022 08:00:00 -0000
+
+ros-humble-rqt-image-overlay-layer (0.0.2-2jammy) jammy; urgency=high
+
+
+
+ -- ijnek <kenjibrameld@gmail.com>  Sat, 29 Jan 2022 08:00:00 -0000
+
+ros-humble-rqt-image-overlay-layer (0.0.1-2jammy) jammy; urgency=high
+
+  * Initial release
+  * Contributors: ijnek
+
+ -- ijnek <kenjibrameld@gmail.com>  Sat, 08 Jan 2022 08:00:00 -0000
+
+
