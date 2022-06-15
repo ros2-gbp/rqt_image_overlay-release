@@ -2,7 +2,7 @@
 Changelog for package rqt_image_overlay
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0.1.0 (2022-06-15)
+0.2.0 (2022-06-15)
 ------------------
 * fix up test
 * change theora transport dependency to compressed transport
