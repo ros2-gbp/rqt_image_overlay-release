@@ -2,6 +2,9 @@
 Changelog for package rqt_image_overlay_layer
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.1.0 (2022-06-15)
+------------------
+
 0.0.5 (2022-03-12)
 ------------------
 * add layer color selection feature
