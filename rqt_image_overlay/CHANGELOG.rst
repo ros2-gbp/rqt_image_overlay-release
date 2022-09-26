@@ -2,17 +2,17 @@
 Changelog for package rqt_image_overlay
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0.1.2 (2022-09-26)
+0.0.8 (2022-09-26)
 ------------------
-* Correctly map ImageManager list model index to topic vector (`#48 <https://github.com/ros-sports/rqt_image_overlay/issues/48>`_)
+* Correctly map ImageManager list model index to topic vector (#47 <https://github.com/ros-sports/rqt_image_overlay/issues/47>)
 * Contributors: Kenji Brameld, Marcel Zeilinger
 
-0.1.1 (2022-08-07)
+0.0.7 (2022-08-07)
 ------------------
 * use sensor qos for overlays too
 * Contributors: Kenji Brameld
 
-0.1.0 (2022-06-15)
+0.0.6 (2022-06-15)
 ------------------
 * fix up test
 * change theora transport dependency to compressed transport
