@@ -2,17 +2,20 @@
 Changelog for package rqt_image_overlay
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0.0.8 (2022-09-26)
+0.3.0 (2022-10-03)
 ------------------
-* Correctly map ImageManager list model index to topic vector (#47 <https://github.com/ros-sports/rqt_image_overlay/issues/47>)
+* Change #include of cv_bridge.h to cv_bridge.hpp (`#51 <https://github.com/ros-sports/rqt_image_overlay/issues/51>`_)
+* Correctly map ImageManager list model index to topic vector (`#46 <https://github.com/ros-sports/rqt_image_overlay/issues/46>`_)
+* Allow depth images to be displayed too (`#42 <https://github.com/ros-sports/rqt_image_overlay/issues/42>`_)
+* Add configuration dialog and wait window setting (`#41 <https://github.com/ros-sports/rqt_image_overlay/issues/41>`_)
 * Contributors: Kenji Brameld, Marcel Zeilinger
 
-0.0.7 (2022-08-07)
+0.2.1 (2022-08-07)
 ------------------
 * use sensor qos for overlays too
 * Contributors: Kenji Brameld
 
-0.0.6 (2022-06-15)
+0.2.0 (2022-06-15)
 ------------------
 * fix up test
 * change theora transport dependency to compressed transport
