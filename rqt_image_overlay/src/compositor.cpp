@@ -22,22 +22,11 @@ namespace rqt_image_overlay
 {
 
 Compositor::Compositor(
-  const ImageManager & imageManager, const OverlayManager & overlayManager, float frequency)
-: imageManager(imageManager), overlayManager(overlayManager),
-  window_(std::make_shared<rclcpp::Duration>(0, 300000000))
+  const ImageManager & imageManager, const OverlayManager & overlayManager,
+  float frequency, rclcpp::Duration window)
+: imageManager(imageManager), overlayManager(overlayManager), window(window)
 {
   startTimer(1000.0 / frequency);
-}
-
-void Compositor::setWindow(const rclcpp::Duration & window)
-{
-  std::atomic_store(&window_, std::make_shared<rclcpp::Duration>(window));
-}
-
-rclcpp::Duration Compositor::getWindow() const
-{
-  auto window = std::atomic_load(&window_);
-  return *window;
 }
 
 void Compositor::setCallableSetImage(std::function<void(std::shared_ptr<QImage>)> setImage)
@@ -50,9 +39,6 @@ std::shared_ptr<QImage> Compositor::compose()
   if (!imageManager.imageAvailable()) {
     return nullptr;
   }
-
-  // Get window_ value through the getWindow() method so that it is thread-safe
-  auto window = getWindow();
 
   rclcpp::Time targetTime = systemClock.now() - window;
   auto [composition, imageHeaderTime] = imageManager.getClosestImageAndHeaderTime(targetTime);

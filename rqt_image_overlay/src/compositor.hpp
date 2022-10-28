@@ -32,11 +32,8 @@ class Compositor : public QObject
 
 public:
   Compositor(
-    const ImageManager & imageManager, const OverlayManager & overlayManager, float frequency);
-
-  // Thread safe setter/getter for window
-  void setWindow(const rclcpp::Duration & window);
-  rclcpp::Duration getWindow() const;
+    const ImageManager & imageManager, const OverlayManager & overlayManager,
+    float frequency, rclcpp::Duration window = rclcpp::Duration{0, 300000000});
 
   void setCallableSetImage(std::function<void(std::shared_ptr<QImage>)> setImage);
 
@@ -49,11 +46,7 @@ private:
 
   std::function<void(std::shared_ptr<QImage>)> setImage;
 
-  // Wait window for collecting messages before composing image.
-  // To access this value, use the getWindow() method to ensure thread-safety, even from within
-  // this class.
-  std::shared_ptr<rclcpp::Duration> window_;
-
+  const rclcpp::Duration window;  // Wait window for collecting messages before composing image
   rclcpp::Clock systemClock{RCL_SYSTEM_TIME};
 };
 
