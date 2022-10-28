@@ -1,3 +1,28 @@
+## rqt_image_overlay (rolling) - 0.3.1-1
+
+The packages in the `rqt_image_overlay` repository were released into the `rolling` distro by running `/usr/bin/bloom-release --rosdistro rolling rqt_image_overlay` on `Fri, 28 Oct 2022 23:26:10 -0000`
+
+These packages were released:
+- `rqt_image_overlay`
+- `rqt_image_overlay_layer`
+
+Version of package(s) in repository `rqt_image_overlay`:
+
+- upstream repository: https://github.com/ros-sports/rqt_image_overlay.git
+- release repository: https://github.com/ros2-gbp/rqt_image_overlay-release.git
+- rosdistro version: `0.3.0-1`
+- old version: `0.3.0-1`
+- new version: `0.3.1-1`
+
+Versions of tools used:
+
+- bloom version: `0.11.2`
+- catkin_pkg version: `0.5.2`
+- rosdep version: `0.22.1`
+- rosdistro version: `0.9.0`
+- vcstools version: `0.1.42`
+
+
 ## rqt_image_overlay (rolling) - 0.3.0-1
 
 The packages in the `rqt_image_overlay` repository were released into the `rolling` distro by running `/usr/bin/bloom-release --rosdistro rolling rqt_image_overlay` on `Mon, 03 Oct 2022 10:21:14 -0000`
