@@ -1,0 +1,12 @@
+Source: ros-iron-rqt-image-overlay-layer
+Section: misc
+Priority: optional
+Maintainer: ijnek <kenjibrameld@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), qtbase5-dev, ros-iron-ament-cmake, ros-iron-ament-lint-auto <!nocheck>, ros-iron-ament-lint-common <!nocheck>, ros-iron-message-filters, ros-iron-pluginlib, ros-iron-rclcpp, ros-iron-rcpputils, ros-iron-rosidl-runtime-cpp, ros-iron-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-iron-rqt-image-overlay-layer
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, qtbase5-dev, ros-iron-message-filters, ros-iron-pluginlib, ros-iron-rclcpp, ros-iron-rcpputils, ros-iron-rosidl-runtime-cpp, ros-iron-ros-workspace
+Description: Provides an rqt_image_overlay_layer plugin interface, and a template impelementation class
