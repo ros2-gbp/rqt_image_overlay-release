@@ -22,7 +22,7 @@
 #include "rclcpp/serialization.hpp"
 #include "rosidl_runtime_cpp/traits.hpp"
 #include "rcpputils/asserts.hpp"
-#include "message_filters/message_traits.h"
+#include "message_filters/message_traits.hpp"
 
 namespace rqt_image_overlay_layer
 {
@@ -73,7 +73,7 @@ protected:
   Plugin()
   : library(rclcpp::get_typesupport_library(rosidl_generator_traits::name<T>(),
       "rosidl_typesupport_cpp")),
-    stringTypesupport(rclcpp::get_typesupport_handle(rosidl_generator_traits::name<T>(),
+    stringTypesupport(rclcpp::get_message_typesupport_handle(rosidl_generator_traits::name<T>(),
       "rosidl_typesupport_cpp", *library)),
     base(stringTypesupport)
   {
