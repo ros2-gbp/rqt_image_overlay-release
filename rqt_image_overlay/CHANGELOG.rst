@@ -2,8 +2,10 @@
 Changelog for package rqt_image_overlay
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0.4.0 (2024-10-30)
+0.5.0 (2024-10-30)
 ------------------
+* Fix deprecated headers and methods (`#68 <https://github.com/ros-sports/rqt_image_overlay/issues/68>`_)
+* Contributors: Kenji Brameld
 
 0.3.1 (2022-10-29)
 ------------------
