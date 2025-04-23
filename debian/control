@@ -1,0 +1,12 @@
+Source: ros-kilted-rqt-image-overlay
+Section: misc
+Priority: optional
+Maintainer: ijnek <kenjibrameld@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), qtbase5-dev, ros-kilted-ament-cmake, ros-kilted-ament-cmake-gtest <!nocheck>, ros-kilted-ament-lint-auto <!nocheck>, ros-kilted-ament-lint-common <!nocheck>, ros-kilted-compressed-image-transport <!nocheck>, ros-kilted-image-transport, ros-kilted-pluginlib, ros-kilted-rclcpp, ros-kilted-ros-image-to-qimage, ros-kilted-rqt-gui, ros-kilted-rqt-gui-cpp, ros-kilted-rqt-image-overlay-layer, ros-kilted-std-msgs <!nocheck>, ros-kilted-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-kilted-rqt-image-overlay
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, qtbase5-dev, ros-kilted-image-transport, ros-kilted-pluginlib, ros-kilted-rclcpp, ros-kilted-ros-image-to-qimage, ros-kilted-rqt-gui, ros-kilted-rqt-gui-cpp, ros-kilted-rqt-image-overlay-layer, ros-kilted-ros-workspace
+Description: An rqt plugin to display overlays for custom msgs on an image using plugins.
