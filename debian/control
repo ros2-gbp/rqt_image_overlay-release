@@ -1,0 +1,12 @@
+Source: ros-kilted-rqt-image-overlay-layer
+Section: misc
+Priority: optional
+Maintainer: ijnek <kenjibrameld@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), qtbase5-dev, ros-kilted-ament-cmake, ros-kilted-ament-lint-auto <!nocheck>, ros-kilted-ament-lint-common <!nocheck>, ros-kilted-message-filters, ros-kilted-pluginlib, ros-kilted-rclcpp, ros-kilted-rcpputils, ros-kilted-rosidl-runtime-cpp, ros-kilted-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-kilted-rqt-image-overlay-layer
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, qtbase5-dev, ros-kilted-message-filters, ros-kilted-pluginlib, ros-kilted-rclcpp, ros-kilted-rcpputils, ros-kilted-rosidl-runtime-cpp, ros-kilted-ros-workspace
+Description: Provides an rqt_image_overlay_layer plugin interface, and a template impelementation class
