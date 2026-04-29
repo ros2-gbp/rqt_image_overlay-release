@@ -1,0 +1,12 @@
+Source: ros-lyrical-rqt-image-overlay-layer
+Section: misc
+Priority: optional
+Maintainer: ijnek <kenjibrameld@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), qtbase5-dev, ros-lyrical-ament-cmake, ros-lyrical-ament-lint-auto <!nocheck>, ros-lyrical-ament-lint-common <!nocheck>, ros-lyrical-message-filters, ros-lyrical-pluginlib, ros-lyrical-rclcpp, ros-lyrical-rcpputils, ros-lyrical-rosidl-runtime-cpp, ros-lyrical-ros-workspace
+Homepage: https://index.ros.org/p/rqt_image_overlay_layer/#lyrical
+Standards-Version: 3.9.2
+
+Package: ros-lyrical-rqt-image-overlay-layer
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, qtbase5-dev, ros-lyrical-message-filters, ros-lyrical-pluginlib, ros-lyrical-rclcpp, ros-lyrical-rcpputils, ros-lyrical-rosidl-runtime-cpp, ros-lyrical-ros-workspace
+Description: Provides an rqt_image_overlay_layer plugin interface, and a template impelementation class
